@@ -1,40 +1,51 @@
 'use strict';
 
 angular.module('denTopThreeApp')
-  .controller('MainCtrl',  ['$scope', '$firebase',function($scope, $firebase) {
+	.controller('MainCtrl', ['$scope', '$location', '$firebase', function ($scope, $location, $firebase) {
 
-    var ref = new Firebase('https://dentopthree.firebaseio.com/TopThreeLists');
-    // create an AngularFire reference to the data
+		var ref = new Firebase('https://dentopthree.firebaseio.com/TopThreeLists');
+		// create an AngularFire reference to the data
 
-    var sync = $firebase(ref);
-    $scope.topThreeLists = sync.$asArray();
+		var sync = $firebase(ref);
+		$scope.topThreeLists = sync.$asArray();
 
-    $scope.createList = function(name, description){
+		$scope.createList = function (name) {
 
-	  var listRef = ref.child(name);
+			$scope.listNameInUse = false;
 
-      listRef.set({
-	      'name': name,
-	      'items': [
-		      {
-			      'name': 'First',
-			      'desc': '',
-			      'rank': 1
-		      },
-		      {
-			      'name': 'Second',
-			      'desc': '',
-			      'rank': 2
-		      },
-		      {
-			      'name': 'Third',
-			      'desc': '',
-			      'rank': 3
-		      }
-	      ]
-      });
-      $scope.topThreeLists.$add(listRef);
+			for (var i=0; i<$scope.topThreeLists.length; i++) {
+				if ($scope.topThreeLists[i].name.toLowerCase() == name.toLowerCase()) {
+					$scope.listNameInUse = true;
+					return;
+				}
+			}
 
-      // syncObject.push({name: $scope.name, desc: $scope.description});
-    };
-  }]);
+			if (!$scope.listNameInUse) {
+				$location.path('/' + name);
+					var listRef = ref.child(name);
+
+					listRef.set({
+						'name': name,
+						'items': [
+							{
+								'name': 'First',
+								'desc': '',
+								'rank': 1
+							},
+							{
+								'name': 'Second',
+								'desc': '',
+								'rank': 2
+							},
+							{
+								'name': 'Third',
+								'desc': '',
+								'rank': 3
+							}
+						]
+					});
+
+					$scope.topThreeLists.$add(listRef);
+			}
+		};
+	}]);

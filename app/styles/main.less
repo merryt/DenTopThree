@@ -82,8 +82,19 @@ body {
 	display: block;
 	width: 100%;
 	height: 40px;
+	padding-left: 10px;
+
+	&.invalid {
+		border: 1px solid red;
+	}
 }
 
+p.error-msg {
+	font-size: 14px;
+	color: red;
+	margin-bottom: 0;
+	font-weight: bold;
+}
 .topThreeLists {
 	list-style: none;
 	display: block;

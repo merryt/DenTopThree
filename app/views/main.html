@@ -3,11 +3,14 @@
 </div>
 
 <div class="jumbotron">
-	<h2>What Are Your Top Three?</h2>
-	<input class="list-search" ng-model="listName" type="text" placeholder="List Name">
-	<br/>
-	<br/>
-	<button class="btn btn-blue" ng-click="createList(listName)">Create list</button>
+	<form id="createListForm" name="createListForm" ng-submit="createList(listName)">
+		<h2>What Are Your Top Three?</h2>
+		<p class="error-msg" ng-if="listNameInUse">That list already exists!</p>
+		<input class="list-search" ng-class="{'invalid': listNameInUse}" ng-model="listName" type="text" placeholder="List Name">
+		<br/>
+		<br/>
+		<button class="btn btn-blue">Create list</button>
+	</form>
 </div>
 <h3>Top 3 Lists</h3>
 <div class="row marketing">

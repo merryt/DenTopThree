@@ -15,12 +15,12 @@ So simple this is the TL;DR for now. Run Node install and Bower install and you 
 
 Setup:
 
-	```npm install```
+	npm install
 
-	```bower install```
+	bower install
 
 and finally, run it:
 
-	```grunt serve```
+	grunt serve
 
 It should open a browser window at port 9000 by default but feel free to do you're own thing, we're not too picky.

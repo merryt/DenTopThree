@@ -1,0 +1,9 @@
+<form name="topThreeForm">
+	<span>
+		<input name="itemName" type="text" ng-model="item.name" ng-model-options="{ updateOn: 'blur' }" ng-keyup="cancel($event)" ng-readonly="readOnly">
+		<input name="itemDescription" type="text" ng-model="item.desc" ng-model-options="{ updateOn: 'blur' }" ng-keyup="cancel($event)" ng-readonly="readOnly">
+		<input type="button" ng-if="readOnly" ng-click="enableEdit()" value="Edit">
+		<input type="button" ng-if="!readOnly" ng-click="cancelEdit()" value="Cancel">
+		<input type="button" ng-if="!readOnly" ng-click="saveItem(item)" value="Save">
+	</span>
+</form>

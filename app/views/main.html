@@ -1,31 +1,24 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">DenTopThree</h3>
-</div>
-
 <div class="jumbotron">
-  <h2>Top restaraunt in denver?</h2>
-  <input ng-model="name" type="text" placeholder="name">
-  <input ng-model="description" type="text" placeholder="why is it the best?">
-  <br/>
-  <br/>
-  <button class="btn btn-blue" ng-click="addToList(name, description)">Add to list</button>
+	<form id="createListForm" name="createListForm" ng-submit="createList(listName)">
+		<h2>What Are Your Top Three?</h2>
+		<p class="error-msg" ng-if="listNameInUse">That list already exists!</p>
+		<input class="list-search" ng-class="{'invalid': listNameInUse}" ng-model="listName" type="text" placeholder="List Name">
+		<br/>
+		<br/>
+		<button class="btn btn-blue">Create list</button>
+	</form>
 </div>
-<h3>Top 3</h3>
+<h3>Top 3 Lists</h3>
 <div class="row marketing">
-   <span ng-repeat="item in devs | limitTo: 3">
-     <h4>{{item.name}}</h4>
-     <p>
-         {{item.desc}}
-     </p>
-  </span>
-</div>
+	<ul class="topThreeLists">
+		<li class="topThreeList" ng-repeat="list in topThreeLists | filter:listName">
+			<h4><a href="#/{{list.name}}">{{list.name}}</a> </h4>
+			<ul class="list-items">
+				 <li ng-repeat="item in list.items">
+			        {{item.name}}
+		        </li>
+			</ul>
+		 </li>
+	</ul>
 
-
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
 </div>

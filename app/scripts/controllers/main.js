@@ -14,7 +14,7 @@ angular.module('denTopThreeApp')
 			$scope.listNameInUse = false;
 
 			for (var i=0; i<$scope.topThreeLists.length; i++) {
-				if ($scope.topThreeLists[i].name.toLowerCase() == name.toLowerCase()) {
+				if ($scope.topThreeLists[i].name.toLowerCase() === name.toLowerCase()) {
 					$scope.listNameInUse = true;
 					return;
 				}

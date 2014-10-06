@@ -10,7 +10,7 @@
  */
 angular
   .module('denTopThreeApp', [
-    'ngAnimate',
+   //  'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',

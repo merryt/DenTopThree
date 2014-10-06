@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('denTopThreeApp')
     .directive('topThreeItem', ['$firebase', function ($firebase) {
         return {
@@ -30,10 +32,10 @@ angular.module('denTopThreeApp')
 			            'name': item.name,
 			            'desc': item.desc,
 			            'rank': item.rank
-		            })
+		            });
 	            };
             }
-        }
+        };
     }])
 	.controller('ListCtrl', ['$scope', '$routeParams', '$firebase', function ($scope, $routeParams, $firebase) {
 
